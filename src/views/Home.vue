@@ -138,6 +138,7 @@ export default {
 }
 </script>
 
+<!-- 没有使用 scoped, 因为一用 scoped 那个 cursor 就生效不了 -->
 <style lang="stylus">
 .vg-crypt-text
   margin-bottom 30px!important
