@@ -13,6 +13,7 @@
     </section>
     <section class="section">
       <div class="container">
+        <h2 class="title">原文词频分析</h2>
         <b-tabs v-model="activeTab" type="is-boxed" size="is-medium">
           <b-tab-item label="单字符频率">
             <SingleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
