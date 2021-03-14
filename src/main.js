@@ -11,6 +11,7 @@ Vue.use(Buefy)
 import ECharts from 'vue-echarts'
 import "echarts";
 Vue.component('v-chart', ECharts)
+import 'echarts-gl';
 
 Vue.config.productionTip = false
 

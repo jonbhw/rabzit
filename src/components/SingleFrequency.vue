@@ -8,11 +8,6 @@ export default {
   props: {
     lowerCasedPlainText: String
   },
-  data() {
-    return {
-
-    }
-  },
   computed: {
     singleFrequency() { // 单字符频率
       var obj = {}

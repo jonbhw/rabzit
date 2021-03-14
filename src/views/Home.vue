@@ -6,48 +6,42 @@
         <b-field>
           <b-input v-model="plaintext" type="textarea"></b-input>
         </b-field>
-        <b-button @click="processPlainText">Process 1</b-button>
-        <b-button @click="displaySingleFrequency=!displaySingleFrequency">Process 2</b-button>
-        <b-button @click="analyzeTripleFrequency">Process 4</b-button>
+        <b-button @click="processPlainText">Process!</b-button>
       </div>
     </section>
     <section v-if="displaySingleFrequency" class="section">
-      <SingleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
+      <div class="container">
+        <SingleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
+      </div>
     </section>
+    <section v-if="displayDuoFrequency" class="section">
+      <div class="container">
+        <DuoFrequency :lowerCasedPlainText="lowerCasedPlainText" />
+      </div>
+    </section>    
   </div>
 </template>
 
 <script>
 import SingleFrequency from '@/components/SingleFrequency.vue'
+import DuoFrequency from '@/components/DuoFrequency.vue'
 export default {
   name: 'Home',
   components: {
-    SingleFrequency
+    SingleFrequency, DuoFrequency
   },
   data() {
     return {
       plaintext: "",
       lowerCasedPlainText: "",
-      duoFrequency: {}, // 双字符频率
       tripleFrequency: {},  // 三字符频率
-      displaySingleFrequency: false,
+      displaySingleFrequency: true,
+      displayDuoFrequency: true,
     }
   },
   methods: {
     processPlainText() {
       this.lowerCasedPlainText = this.plaintext.toLowerCase().replace(/[^a-z]+/g, '')
-    },
-    analyzeDuoFrequency() { // 统计双字符频率
-      var temp_str = "";
-      for (let i = 0; i < this.lowerCasedPlainText.length-1; i++) {
-        temp_str = this.lowerCasedPlainText[i] + this.lowerCasedPlainText[i+1]
-        if (this.duoFrequency[temp_str] !== undefined) {
-          this.duoFrequency[temp_str]++
-        }
-        else {
-          this.duoFrequency[temp_str] = 1
-        }
-      }
     },
     analyzeTripleFrequency() {  // 统计三字符频率
       var temp_str = "";
