@@ -40,12 +40,20 @@ export default {
       }
       return arr
     },
+    vistualMapMaxNumber() {
+      if (this.lowerCasedPlainText.length < 2000) {
+        return parseInt(this.lowerCasedPlainText.length / 200) + 1
+      }
+      const log = parseInt(2*Math.log(this.lowerCasedPlainText.length))
+      return log || 15
+    },
     option() {
       var obj = {
+        tooltip: {},
         visualMap: {
           show: true,
           min: 1,
-          max: 35,
+          max: this.vistualMapMaxNumber,
           inRange: {
             symbolSize: [0.5, 25],
             color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'],
@@ -76,8 +84,14 @@ export default {
           }
         },
         series: [{
+          name: "三字符频率",
           type: 'scatter3D',
-          data: this.tripleFrequency
+          data: this.tripleFrequency,
+          emphasis: {
+            label: {
+              fontSize: 20,
+            }
+          }
         }]
       }
       return obj

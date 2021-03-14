@@ -41,11 +41,11 @@ export default {
           data: 'abcdefghijklmnopqrstuvwxyz'.split('')  // 字母表
         },
         yAxis: {
-            type: 'value'
+          type: 'value'
         },
         series: [{
-            data: this.freqList,
-            type: 'bar'
+          data: this.freqList,
+          type: 'bar'
         }]
       }
       return obj
