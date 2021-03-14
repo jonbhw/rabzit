@@ -3,14 +3,10 @@
 </template>
 
 <script>
-import { THEME_KEY } from "vue-echarts";
 export default {
   name: "TripleFrequency",
   props: {
     lowerCasedPlainText: String
-  },
-  provide: {
-    [THEME_KEY]: "dark"
   },
   computed: {
     tripleFrequency() {
@@ -47,9 +43,9 @@ export default {
     option() {
       var obj = {
         visualMap: {
-          show: false,
-          min: 2,
-          max: 6,
+          show: true,
+          min: 1,
+          max: 35,
           inRange: {
             symbolSize: [0.5, 25],
             color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'],
@@ -70,10 +66,10 @@ export default {
         },
         grid3D: {
           axisLine: {
-            lineStyle: { color: '#fff' }
+            lineStyle: { color: '#000' }
           },
           axisPointer: {
-            lineStyle: { color: '#fff' }
+            lineStyle: { color: '#000' }
           },
           viewControl: {
             // autoRotate: true
