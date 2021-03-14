@@ -7,39 +7,35 @@
           <b-input v-model="plaintext" type="textarea"></b-input>
         </b-field>
         <b-button @click="processPlainText">Process 1</b-button>
-        <b-button @click="analyzeSingleFrequency">Process 2</b-button>
-        <b-button @click="analyzeDuoFrequency">Process 3</b-button>
+        <b-button @click="displaySingleFrequency=!displaySingleFrequency">Process 2</b-button>
         <b-button @click="analyzeTripleFrequency">Process 4</b-button>
       </div>
+    </section>
+    <section v-if="displaySingleFrequency" class="section">
+      <SingleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
     </section>
   </div>
 </template>
 
 <script>
+import SingleFrequency from '@/components/SingleFrequency.vue'
 export default {
   name: 'Home',
+  components: {
+    SingleFrequency
+  },
   data() {
     return {
       plaintext: "",
       lowerCasedPlainText: "",
-      singleFrequency: {}, // 单字符频率
       duoFrequency: {}, // 双字符频率
       tripleFrequency: {},  // 三字符频率
+      displaySingleFrequency: false,
     }
   },
   methods: {
     processPlainText() {
       this.lowerCasedPlainText = this.plaintext.toLowerCase().replace(/[^a-z]+/g, '')
-    },
-    analyzeSingleFrequency() {  // 统计单字符频率
-      for (const ch of this.lowerCasedPlainText) {
-        if (this.singleFrequency[ch] !== undefined) {
-          this.singleFrequency[ch]++
-        }
-        else {
-          this.singleFrequency[ch] = 1
-        }
-      }
     },
     analyzeDuoFrequency() { // 统计双字符频率
       var temp_str = "";

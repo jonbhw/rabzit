@@ -8,6 +8,10 @@ import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 Vue.use(Buefy)
 
+import ECharts from 'vue-echarts'
+import "echarts";
+Vue.component('v-chart', ECharts)
+
 Vue.config.productionTip = false
 
 new Vue({
