@@ -18,25 +18,31 @@
       <div class="container">
         <DuoFrequency :lowerCasedPlainText="lowerCasedPlainText" />
       </div>
-    </section>    
+    </section>
+    <section v-if="displayTripleFrequency" class="section">
+      <div class="container">
+        <TripleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 import SingleFrequency from '@/components/SingleFrequency.vue'
 import DuoFrequency from '@/components/DuoFrequency.vue'
+import TripleFrequency from '@/components/TripleFrequency.vue'
 export default {
   name: 'Home',
   components: {
-    SingleFrequency, DuoFrequency
+    SingleFrequency, DuoFrequency, TripleFrequency
   },
   data() {
     return {
       plaintext: "",
       lowerCasedPlainText: "",
-      tripleFrequency: {},  // 三字符频率
       displaySingleFrequency: true,
       displayDuoFrequency: true,
+      displayTripleFrequency: true,  // 三字符频率      
     }
   },
   methods: {
