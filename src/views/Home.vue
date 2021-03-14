@@ -6,17 +6,22 @@
         <b-field>
           <b-input v-model="plaintext" type="textarea" placeholder="明文"></b-input>
         </b-field>
+        <b-field>
+          <b-input v-model="vigenereKey" placeholder="维吉尼亚密钥（可选）"></b-input>
+        </b-field>
         <div class="buttons is-right">
           <b-button @click="processPlainText">开始分析</b-button>
         </div>
       </div>
     </section>
-    <section class="section">
+    <section class="section" v-show="lowerCasedPlainText">
       <div class="container">
         <h2 class="title">原文词频分析</h2>
         <b-tabs v-model="activeTab" type="is-boxed" size="is-medium">
           <b-tab-item label="单字符频率">
-            <SingleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
+            <template v-if="displaySingleFrequency">
+              <SingleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
+            </template>
           </b-tab-item>
           <b-tab-item label="双字符频率">
             <template v-if="displayDuoFrequency">
@@ -28,6 +33,7 @@
               <TripleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
             </template>
           </b-tab-item>
+          <b-tab-item :visible="!(displaySingleFrequency||displayDuoFrequency||displayTripleFrequency)" label=" "></b-tab-item>
         </b-tabs>
       </div>
     </section>
@@ -48,16 +54,19 @@ export default {
   data() {
     return {
       plaintext: "",
+      vigenereKey: "",
       lowerCasedPlainText: "",
-      displaySingleFrequency: true,
+      displaySingleFrequency: false,
       displayDuoFrequency: false,
       displayTripleFrequency: false,
-      activeTab: 0
+      activeTab: 3
     }
   },
   watch: {
     activeTab() {
-      if (this.activeTab === 1) {
+      if (this.activeTab === 0) {
+        this.displaySingleFrequency = true
+      } else if (this.activeTab === 1) {
         this.displayDuoFrequency = true
       } else if (this.activeTab === 2) {
         this.displayTripleFrequency = true
@@ -67,6 +76,7 @@ export default {
   methods: {
     processPlainText() {
       this.lowerCasedPlainText = this.plaintext.toLowerCase().replace(/[^a-z]+/g, '')
+      this.activeTab = 0
     },
     analyzeTripleFrequency() {  // 统计三字符频率
       var temp_str = "";
