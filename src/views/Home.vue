@@ -11,21 +11,27 @@
         </div>
       </div>
     </section>
-    <section v-if="displaySingleFrequency" class="section">
+    <section class="section">
       <div class="container">
-        <SingleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
+        <b-tabs v-model="activeTab" type="is-boxed" size="is-medium">
+          <b-tab-item label="单字符频率">
+            <SingleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
+          </b-tab-item>
+          <b-tab-item label="双字符频率">
+            <template v-if="displayDuoFrequency">
+              <DuoFrequency :lowerCasedPlainText="lowerCasedPlainText" />
+            </template>
+          </b-tab-item>
+          <b-tab-item label="三字符频率">
+            <template v-if="displayTripleFrequency">
+              <TripleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
+            </template>
+          </b-tab-item>
+        </b-tabs>
       </div>
     </section>
-    <section v-if="displayDuoFrequency" class="section">
-      <div class="container">
-        <DuoFrequency :lowerCasedPlainText="lowerCasedPlainText" />
-      </div>
-    </section>
-    <section v-if="displayTripleFrequency" class="section">
-      <div class="container">
-        <TripleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
-      </div>
-    </section>
+
+    
   </div>
 </template>
 
@@ -43,8 +49,18 @@ export default {
       plaintext: "",
       lowerCasedPlainText: "",
       displaySingleFrequency: true,
-      displayDuoFrequency: true,
-      displayTripleFrequency: true,  // 三字符频率      
+      displayDuoFrequency: false,
+      displayTripleFrequency: false,
+      activeTab: 0
+    }
+  },
+  watch: {
+    activeTab() {
+      if (this.activeTab === 1) {
+        this.displayDuoFrequency = true
+      } else if (this.activeTab === 2) {
+        this.displayTripleFrequency = true
+      }
     }
   },
   methods: {

@@ -59,5 +59,5 @@ export default {
 
 <style lang="stylus" scoped>
 .chart
-  height 400px
+  height 500px
 </style>
