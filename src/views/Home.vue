@@ -4,9 +4,11 @@
     <section class="section">
       <div class="container">
         <b-field>
-          <b-input v-model="plaintext" type="textarea"></b-input>
+          <b-input v-model="plaintext" type="textarea" placeholder="明文"></b-input>
         </b-field>
-        <b-button @click="processPlainText">Process!</b-button>
+        <div class="buttons is-right">
+          <b-button @click="processPlainText">开始分析</b-button>
+        </div>
       </div>
     </section>
     <section v-if="displaySingleFrequency" class="section">
