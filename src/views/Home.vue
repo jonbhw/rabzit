@@ -64,7 +64,9 @@
             </template>
           </b-tab-item>
           <b-tab-item :visible="!(displaySingleFrequencyC||displayDuoFrequencyC||displayTripleFrequencyC)" label=" "></b-tab-item>
-        </b-tabs>        
+        </b-tabs>
+        <h3 class="title">Kasiski 分析</h3>
+        <Kasiski :vigenereCryptedText="vigenereCryptedText" />
       </div>
     </section>
   </div>
@@ -74,10 +76,12 @@
 import SingleFrequency from '@/components/SingleFrequency.vue'
 import DuoFrequency from '@/components/DuoFrequency.vue'
 import TripleFrequency from '@/components/TripleFrequency.vue'
+import Kasiski from '@/components/Kasiski.vue'
+
 export default {
   name: 'Home',
   components: {
-    SingleFrequency, DuoFrequency, TripleFrequency
+    SingleFrequency, DuoFrequency, TripleFrequency, Kasiski
   },
   data() {
     return {
