@@ -10,7 +10,7 @@
           <b-input v-model="vigenereKey" placeholder="维吉尼亚密钥（可选）"></b-input>
         </b-field>
         <div class="buttons is-right">
-          <b-button type="is-light" @click="loadBillGatesSpeech">载入示例</b-button>
+          <b-button type="is-light" @click="loadExample">载入示例</b-button>
           <b-button @click="processPlainText">开始分析</b-button>
         </div>
       </div>
@@ -139,7 +139,7 @@ export default {
       }
       this.vigenereCryptedText = result
     },
-    loadBillGatesSpeech() {
+    loadExample() {
       this.plaintext = `President Bok, former President Rudenstine, incoming President Faust, members of the Harvard Corporation and the Board of Overseers, members of the faculty, parents, and especially, the graduates:
 
 I’ve been waiting more than 30 years to say this: “Dad, I always told you I’d come back and get my degree.”
@@ -287,7 +287,7 @@ Knowing what you know, how could you not?
 And I hope you will come back here to Harvard 30 years from now and reflect on what you have done with your talent and your energy. I hope you will judge yourselves not on your professional accomplishments alone, but also on how well you have addressed the world’s deepest inequities … on how well you treated people a world away who have nothing in common with you but their humanity.
 Good luck.      
       `
-    
+      this.vigenereKey = "thisiskey"
     }
   }
 }
