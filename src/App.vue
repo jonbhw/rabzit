@@ -2,7 +2,15 @@
   <div id="app">
     <Hero />
     <router-view />
+    <footer class="footer">
+      <div class="content">
+        <p>
+          © 2021 Jonbgua
+        </p>
+      </div>
+    </footer>    
   </div>
+  
 </template>
 
 <script>
@@ -18,5 +26,7 @@ export default {
 </script>
 
 <style lang="stylus">
-
+footer
+  padding-top 2rem!important
+  padding-bottom 2rem!important
 </style>

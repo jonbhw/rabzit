@@ -69,8 +69,8 @@
         <h3 class="title">Kasiski 分析</h3>
         <Kasiski :vigenereCryptedText="vigenereCryptedText" />
       </div>
-    </section>
-  </div>
+    </section>  
+  </div>  
 </template>
 
 <script>
