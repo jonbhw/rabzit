@@ -285,8 +285,7 @@ You have more than we had; you must start sooner, and carry on longer.
 Knowing what you know, how could you not?
 
 And I hope you will come back here to Harvard 30 years from now and reflect on what you have done with your talent and your energy. I hope you will judge yourselves not on your professional accomplishments alone, but also on how well you have addressed the world’s deepest inequities … on how well you treated people a world away who have nothing in common with you but their humanity.
-Good luck.      
-      `
+Good luck.`
       this.vigenereKey = "thisiskey"
     }
   }
