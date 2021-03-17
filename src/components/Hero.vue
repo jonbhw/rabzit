@@ -2,7 +2,7 @@
   <section class="hero is-medium is-link">
     <div class="hero-body">
       <p class="title">
-        Rabizt
+        Rabzit
       </p>
       <p class="subtitle">
         词频统计 &amp; 维吉尼亚加密

@@ -5,7 +5,7 @@
     <footer class="footer">
       <div class="content">
         <p>
-          © 2021 Jonbgua
+          © 2021 <a href="https://jonbgua.com" target="_blank" rel="noopener noreferrer">Jonbgua</a>
         </p>
       </div>
     </footer>    
