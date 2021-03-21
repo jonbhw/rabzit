@@ -51,13 +51,13 @@ export default {
   watch: {
     sortedResult() {
       const t = this.sortedResult[0][1]["location"]
-      console.log(t)
+      // console.log(t)
       const len = t.length - 1;
       const r = [];
       for (let i = 0; i < len; i++) {
           r.push(t[i+1] - t[i]);
       }
-      console.log(r)
+      // console.log(r)
       this.gcdResult = gcd_more_than_two_numbers(r)
     }
   }

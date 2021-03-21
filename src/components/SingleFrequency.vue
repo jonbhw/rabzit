@@ -75,7 +75,6 @@ export default {
       var l = []
       for (let i=97; i<=97+25; i++) {
         const ch = String.fromCharCode(i)
-        console.log(ch)
         if (this.singleFrequency[ch] === undefined) {
           l.push({
             'letter': ch,
