@@ -11,5 +11,8 @@ module.exports = {
       // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
       title: 'Rabzit | Jonbgua',
     }
+  },
+  pwa: {
+    themeColor: '#7957d5'  
   }
 }
