@@ -1,11 +1,15 @@
 <template>
   <div>
+    <b-field>
+      <b-checkbox v-model="enableTable">显示频率表（可能导致严重卡顿）</b-checkbox>
+    </b-field>
     <v-chart class="chart" :option="option"></v-chart>
     <b-collapse
       aria-id="triplefreqpanel"
       class="panel"
       animation="slide"
-      v-model="isOpen">
+      v-model="isOpen"
+      v-if="enableTable">
       <template #trigger>
         <div
           class="panel-heading"
@@ -39,7 +43,8 @@ export default {
           sortable: true
         }
       ],
-      isOpen: false
+      isOpen: false,
+      enableTable: false
     }
   },
   computed: {
