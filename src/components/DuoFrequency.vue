@@ -144,10 +144,12 @@ export default {
       var data = []
       for (let i = 0; i < 26; i++) {
         for (let j = 0; j < 26; j++) {
-          data.push({
-            'letter': String.fromCharCode(i+97) + String.fromCharCode(j+97),
-            'frequency': this.duoFreqMatrix[i][j]
-          })
+          if (this.duoFreqMatrix[i][j] !== 0) {
+            data.push({
+              'letter': String.fromCharCode(i+97) + String.fromCharCode(j+97),
+              'frequency': this.duoFreqMatrix[i][j]
+            })
+          }
         }
       }
       return data

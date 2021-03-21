@@ -144,10 +144,12 @@ export default {
       for (let i = 0; i < 26; i++) {
         for (let j = 0; j < 26; j++) {
           for (let k = 0; k < 26; k++) {
-            arr.push({
-              'letter': String.fromCharCode(i+97) + String.fromCharCode(j+97) + String.fromCharCode(k+97),
-              'frequency': temp_arr[i][j][k]
-            })
+            if (temp_arr[i][j][k] !== 0) {
+              arr.push({
+                'letter': String.fromCharCode(i+97) + String.fromCharCode(j+97) + String.fromCharCode(k+97),
+                'frequency': temp_arr[i][j][k]
+              })
+            }
           }
         }
       }
