@@ -2,7 +2,7 @@
   <div>
     <v-chart class="chart" :option="option"></v-chart>
     <b-collapse
-      aria-id="singlefreqpanel"
+      aria-id="duofreqpanel"
       class="panel"
       animation="slide"
       v-model="isOpen">
@@ -10,7 +10,7 @@
         <div
           class="panel-heading"
           role="button"
-          aria-controls="singlefreqpanel">
+          aria-controls="duofreqpanel">
           频率表
         </div>
       </template>

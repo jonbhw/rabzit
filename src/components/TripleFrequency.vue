@@ -1,5 +1,22 @@
 <template>
-  <v-chart class="chart" :option="option"></v-chart>  
+  <div>
+    <v-chart class="chart" :option="option"></v-chart>
+    <b-collapse
+      aria-id="triplefreqpanel"
+      class="panel"
+      animation="slide"
+      v-model="isOpen">
+      <template #trigger>
+        <div
+          class="panel-heading"
+          role="button"
+          aria-controls="triplefreqpanel">
+          频率表
+        </div>
+      </template>
+      <b-table :data="tableData" :columns="columns"></b-table>
+    </b-collapse>
+  </div>
 </template>
 
 <script>
@@ -8,8 +25,25 @@ export default {
   props: {
     lowerCasedPlainText: String
   },
+  data() {
+    return {
+      columns: [
+        {
+          field: 'letter',
+          label: '字符',
+          sortable: true
+        },
+        {
+          field: 'frequency',
+          label: '频率',
+          sortable: true
+        }
+      ],
+      isOpen: false
+    }
+  },
   computed: {
-    tripleFrequency() {
+    tripleFrequencyMatrix() {
       var temp_arr = new Array(26);
       for (let i = 0; i < temp_arr.length; i++) {
         temp_arr[i] = new Array(26)
@@ -27,7 +61,10 @@ export default {
         const third = this.lowerCasedPlainText[i+2].charCodeAt() - "a".charCodeAt()
         temp_arr[first][second][third] ++
       }
-
+      return temp_arr
+    },
+    tripleFrequency() {
+      const temp_arr = this.tripleFrequencyMatrix
       var arr = []
       for (let i = 0; i < 26; i++) {
         for (let j = 0; j < 26; j++) {
@@ -96,6 +133,21 @@ export default {
       }
       return obj
     },
+    tableData() {
+      const temp_arr = this.tripleFrequencyMatrix
+      var arr = []
+      for (let i = 0; i < 26; i++) {
+        for (let j = 0; j < 26; j++) {
+          for (let k = 0; k < 26; k++) {
+            arr.push({
+              'letter': String.fromCharCode(i+97) + String.fromCharCode(j+97) + String.fromCharCode(k+97),
+              'frequency': temp_arr[i][j][k]
+            })
+          }
+        }
+      }
+      return arr
+    }
   }  
 }
 </script>
@@ -103,4 +155,6 @@ export default {
 <style lang="stylus" scoped>
 .chart
   height 1200px
+.panel
+  margin-top 20px
 </style>
