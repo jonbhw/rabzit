@@ -1,5 +1,23 @@
 <template>
-  <v-chart class="chart" :option="option"></v-chart>
+  <div>
+    <v-chart class="chart" :option="option"></v-chart>
+    <b-collapse
+      aria-id="singlefreqpanel"
+      class="panel"
+      animation="slide"
+      v-model="isOpen">
+      <template #trigger>
+        <div
+          class="panel-heading"
+          role="button"
+          aria-controls="singlefreqpanel">
+          频率表
+        </div>
+      </template>
+      <b-table :data="tableData" :columns="columns"></b-table>
+    </b-collapse>
+  </div>
+  
 </template>
 
 <script>
@@ -8,8 +26,25 @@ export default {
   props: {
     lowerCasedPlainText: String
   },
+  data() {
+    return {
+      columns: [
+        {
+          field: 'letter',
+          label: '字符',
+          sortable: true
+        },
+        {
+          field: 'frequency',
+          label: '频率',
+          sortable: true
+        }
+      ],
+      isOpen: false
+    }
+  },
   computed: {
-    duoFrequency() {
+    duoFreqMatrix() {
       var temp_arr = new Array(26);
       for (let i = 0; i < temp_arr.length; i++) {
         temp_arr[i] = new Array(26)
@@ -23,7 +58,10 @@ export default {
         const second = this.lowerCasedPlainText[i+1].charCodeAt() - "a".charCodeAt()
         temp_arr[first][second] ++
       }
-
+      return temp_arr
+    },
+    duoFrequency() {
+      const temp_arr = this.duoFreqMatrix
       var arr = []
       for (let i = 0; i < 26; i++) {
         for (let j = 0; j < 26; j++) {
@@ -96,6 +134,18 @@ export default {
         }]
       }
       return obj
+    },
+    tableData() {
+      var data = []
+      for (let i = 0; i < 26; i++) {
+        for (let j = 0; j < 26; j++) {
+          data.push({
+            'letter': String.fromCharCode(i+97) + String.fromCharCode(j+97),
+            'frequency': this.duoFreqMatrix[i][j]
+          })
+        }
+      }
+      return data
     }
   }
 }
@@ -104,4 +154,6 @@ export default {
 <style lang="stylus" scoped>
 .chart
   height 1000px
+.panel
+  margin-top 20px
 </style>

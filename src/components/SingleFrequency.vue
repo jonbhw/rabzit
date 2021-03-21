@@ -114,4 +114,6 @@ export default {
 <style lang="stylus" scoped>
 .chart
   height 500px
+.panel
+  margin-top 20px  
 </style>
