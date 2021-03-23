@@ -3,7 +3,7 @@
     <b-field>
       <b-checkbox v-model="enableTable">显示频率表</b-checkbox>
     </b-field>
-    <v-chart class="chart" :option="option"></v-chart>
+    <v-chart class="chart" :option="option" autoresize></v-chart>
     <b-collapse
       aria-id="singlefreqpanel"
       class="panel"

@@ -3,7 +3,7 @@
     <b-field>
       <b-checkbox v-model="enableTable">显示频率表（可能导致严重卡顿）</b-checkbox>
     </b-field>
-    <v-chart class="chart" :option="option"></v-chart>
+    <v-chart class="chart" :option="option" autoresize></v-chart>
     <b-collapse
       aria-id="triplefreqpanel"
       class="panel"
