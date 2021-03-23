@@ -35,7 +35,7 @@
     <!-- 加密 -->
     <section class="section" v-show="vigenereCryptedText">
       <div class="container">
-        <h2 class="title">Vigenere 加密</h2>
+        <h2 class="title">Vigenère 加密</h2>
         <h3 class="title">密文</h3>
         <b-field class="vg-crypt-text">
           <b-input v-model="vigenereCryptedText" type="textarea" placeholder="密文" disabled></b-input>
