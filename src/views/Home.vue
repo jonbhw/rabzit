@@ -21,21 +21,14 @@
         <h2 class="title">原文词频分析</h2>
         <b-tabs v-model="activeTab" type="is-boxed" size="is-medium">
           <b-tab-item label="单字符频率">
-            <template v-if="displaySingleFrequency">
-              <SingleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
-            </template>
+            <SingleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
           </b-tab-item>
           <b-tab-item label="双字符频率">
-            <template v-if="displayDuoFrequency">
-              <DuoFrequency :lowerCasedPlainText="lowerCasedPlainText" />
-            </template>
+            <DuoFrequency :lowerCasedPlainText="lowerCasedPlainText" />
           </b-tab-item>
           <b-tab-item label="三字符频率">
-            <template v-if="displayTripleFrequency">
-              <TripleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
-            </template>
+            <TripleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
           </b-tab-item>
-          <b-tab-item :visible="!(displaySingleFrequency||displayDuoFrequency||displayTripleFrequency)" label=" "></b-tab-item>
         </b-tabs>
       </div>
     </section>
@@ -50,21 +43,14 @@
         <h3 class="title">密文词频分析</h3>
         <b-tabs v-model="activeTabC" type="is-boxed" size="is-medium">
           <b-tab-item label="单字符频率">
-            <template v-if="displaySingleFrequencyC">
-              <SingleFrequency :lowerCasedPlainText="vigenereCryptedText" />
-            </template>
+            <SingleFrequency :lowerCasedPlainText="vigenereCryptedText" />
           </b-tab-item>
           <b-tab-item label="双字符频率">
-            <template v-if="displayDuoFrequencyC">
-              <DuoFrequency :lowerCasedPlainText="vigenereCryptedText" />
-            </template>
+            <DuoFrequency :lowerCasedPlainText="vigenereCryptedText" />
           </b-tab-item>
           <b-tab-item label="三字符频率">
-            <template v-if="displayTripleFrequencyC">
-              <TripleFrequency :lowerCasedPlainText="vigenereCryptedText" />
-            </template>
+            <TripleFrequency :lowerCasedPlainText="vigenereCryptedText" />
           </b-tab-item>
-          <b-tab-item :visible="!(displaySingleFrequencyC||displayDuoFrequencyC||displayTripleFrequencyC)" label=" "></b-tab-item>
         </b-tabs>
         <h3 class="title">Kasiski 分析</h3>
         <Kasiski :vigenereCryptedText="vigenereCryptedText" />
@@ -90,36 +76,9 @@ export default {
       vigenereKey: "",
       lowerCasedPlainText: "",
       vigenereCryptedText: "",
-
-      displaySingleFrequency: false,
-      displaySingleFrequencyC: false,
-      displayDuoFrequency: false,
-      displayDuoFrequencyC: false,
-      displayTripleFrequency: false,
-      displayTripleFrequencyC: false,
-      activeTab: 3,
-      activeTabC: 3
     }
   },
   watch: {
-    activeTab() { // 魔法: 为了解决ECharts在这个Tab还没显示时获取不到DOM Width导致图表畸形的问题
-      if (this.activeTab === 0) {
-        this.displaySingleFrequency = true
-      } else if (this.activeTab === 1) {
-        this.displayDuoFrequency = true
-      } else if (this.activeTab === 2) {
-        this.displayTripleFrequency = true
-      }
-    },
-    activeTabC() { // 密文板块
-      if (this.activeTabC === 0) {
-        this.displaySingleFrequencyC = true
-      } else if (this.activeTabC === 1) {
-        this.displayDuoFrequencyC = true
-      } else if (this.activeTabC === 2) {
-        this.displayTripleFrequencyC = true
-      }
-    }
   },
   methods: {
     processPlainText() {
