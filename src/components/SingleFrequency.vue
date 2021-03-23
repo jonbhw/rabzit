@@ -18,7 +18,7 @@
           频率表
         </div>
       </template>
-      <b-table :data="tableData" :columns="columns"></b-table>
+      <b-table :data="tableData" :columns="columns" :mobile-cards="false"></b-table>
     </b-collapse>
   </div>
 </template>
