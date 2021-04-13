@@ -19,7 +19,7 @@
     <section class="section" v-show="lowerCasedPlainText">
       <div class="container">
         <h2 class="title">原文词频分析</h2>
-        <b-tabs v-model="activeTab" type="is-boxed" size="is-medium">
+        <b-tabs type="is-boxed" size="is-medium">
           <b-tab-item label="单字符频率">
             <SingleFrequency :lowerCasedPlainText="lowerCasedPlainText" />
           </b-tab-item>
@@ -41,7 +41,7 @@
           <b-input v-model="vigenereCryptedText" type="textarea" placeholder="密文" disabled></b-input>
         </b-field>
         <h3 class="title">密文词频分析</h3>
-        <b-tabs v-model="activeTabC" type="is-boxed" size="is-medium">
+        <b-tabs type="is-boxed" size="is-medium">
           <b-tab-item label="单字符频率">
             <SingleFrequency :lowerCasedPlainText="vigenereCryptedText" />
           </b-tab-item>
