@@ -1,13 +1,26 @@
 <template>
   <div>
-    <b-message type="is-info">
-      Kasiski 方法猜测的密钥长度受很多因素干扰, 基本就图一乐 (bs
-    </b-message>
     <div class="content is-medium">
-      <p>
-        根据 Kasiski 方法猜测的 Vigenère 密钥长度为：<code></code>。
-        {{ results }}
+      <p class="maxgcd">
+        根据 Kasiski 方法猜测的 Vigenère 密钥长度为：<code>{{ maxGcd }}</code>。
       </p>
+      <b-collapse
+        aria-id="kasiskipanel"
+        class="panel"
+        animation="slide"
+        v-model="isOpen"
+      >
+        <template #trigger>
+          <div class="panel-heading" role="button" aria-controls="kasiskipanel">
+            结果表格
+          </div>
+        </template>
+        <b-table
+          :data="results"
+          :columns="columns"
+          :mobile-cards="false"
+        ></b-table>
+      </b-collapse>
     </div>
   </div>
 </template>
@@ -20,30 +33,49 @@ export default {
   },
   data() {
     return {
-
+      isOpen: false,
+      columns: [
+        {
+          field: "word",
+          label: "字符",
+          sortable: true,
+        },
+        {
+          field: "gcd",
+          label: "最大公因数",
+          sortable: true,
+        },
+      ],
     };
   },
   computed: {
     results() {
       if (this.vigenereCryptedText.length < 5) {
-        return []
+        return [];
       }
-      var result = []
+      var result = [];
       for (var i = 2; i < 5; i++) {
-        const freq_obj = certain_length_frequency(this.vigenereCryptedText, i)
-        console.log(freq_obj)
-        const sorted = get_sorted_tuples(freq_obj)
-        console.log(sorted)
+        const freq_obj = certain_length_frequency(this.vigenereCryptedText, i);
+        const sorted = get_sorted_tuples(freq_obj);
         for (var j = 0; j < 3; j++) {
-          const gcd = get_gcd_from_locations(sorted[j][1]["location"])
-          const word = sorted[j][0]
+          const gcd = get_gcd_from_locations(sorted[j][1]["location"]);
+          const word = sorted[j][0];
           result.push({
-            "word": word,
-            "gcd": gcd
-          })
+            word: word,
+            gcd: gcd,
+          });
         }
       }
-      return result
+      return result;
+    },
+    maxGcd() {
+      var max = 0
+      for (let i of this.results) {
+        if (i.gcd > max) {
+          max = i.gcd
+        }
+      }
+      return max
     }
   },
 };
@@ -126,4 +158,7 @@ function gcd_two_numbers(x, y) {
 }
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+.maxgcd
+  padding-bottom 20px
+</style>
