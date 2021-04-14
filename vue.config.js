@@ -13,6 +13,9 @@ module.exports = {
     }
   },
   pwa: {
-    themeColor: '#7957d5'  
+    themeColor: '#7957d5',
+    workboxOptions: {
+      skipWaiting: true
+    }
   }
 }
