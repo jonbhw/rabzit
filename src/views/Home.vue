@@ -79,6 +79,13 @@ export default {
     }
   },
   watch: {
+    plaintext() {
+      this.lowerCasedPlainText = ""
+      this.vigenereCryptedText = ""
+    },
+    vigenereKey() {
+      this.vigenereCryptedText = ""
+    }
   },
   methods: {
     processPlainText() {
