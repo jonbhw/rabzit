@@ -85,7 +85,6 @@ export default {
     },
     vigenereKey() {
       this.vigenereCryptedText = ""
-      this.vigenereKey = this.vigenereKey.toLowerCase().replace(/[^a-z]+/g, '')
     },
   },
   methods: {
@@ -93,6 +92,7 @@ export default {
       this.lowerCasedPlainText = this.plaintext.toLowerCase().replace(/[^a-z]+/g, '')
       this.activeTab = 0
       if (this.vigenereKey) {
+        this.vigenereKey = this.vigenereKey.toLowerCase().replace(/[^a-z]+/g, '')
         this.vigenereCrypt()
         this.activeTabC = 0
       }
