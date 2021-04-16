@@ -100,7 +100,7 @@ export default {
       var i = 0
       var result = ""
       for (let ch of this.lowerCasedPlainText) {
-        result += String.fromCharCode('a'.charCodeAt() + ((ch.charCodeAt()-'a'.charCodeAt()+this.vigenereKey[i].charCodeAt()) % 26))
+        result += String.fromCharCode('a'.charCodeAt() + ((ch.charCodeAt()-2*'a'.charCodeAt()+this.vigenereKey[i].charCodeAt()) % 26))
         i = (i+1) % this.vigenereKey.length
       }
       this.vigenereCryptedText = result
