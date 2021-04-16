@@ -85,7 +85,8 @@ export default {
     },
     vigenereKey() {
       this.vigenereCryptedText = ""
-    }
+      this.vigenereKey = this.vigenereKey.toLowerCase().replace(/[^a-z]+/g, '')
+    },
   },
   methods: {
     processPlainText() {
