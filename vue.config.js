@@ -17,5 +17,6 @@ module.exports = {
     workboxOptions: {
       skipWaiting: true
     }
-  }
+  },
+  productionSourceMap: false
 }
